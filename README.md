@@ -1,14 +1,13 @@
-## Licensing
+=========================================================
 
-- Copyright 2022 [Creative Tim](https://www.creative-tim.com?ref=readme-mtkr)
-- Creative Tim [license](https://www.creative-tim.com/license?ref=readme-mtkr)
+Material Tailwind Dashboard React - v2.0.0
+  
+=========================================================
 
-## Useful Links
-
-- [More products](https://www.creative-tim.com/templates?ref=readme-mtkr) from Creative Tim
-
-- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
-
-- [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-mtkr) from Creative Tim
-
-- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-mtkr) (earn money)
+* Product Page: https://www.creative-tim.com/product/material-tailwind-dashboard-react
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/material-tailwind-dashboard-react/blob/main/LICENSE.md)
+* Coded by Creative Tim
+  
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
