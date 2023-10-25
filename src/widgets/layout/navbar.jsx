@@ -21,45 +21,43 @@ export function Navbar({ brandName, routes, action }) {
   }, []);
 
   const navList = (
-    <div className="bg-blue-gray-50/50 px-2 py-1 rounded-md">
-      <ul className="mb-4 mt-2 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        {routes.map(({ name, path, icon, href, target }) => (
-          <Typography
-            key={name}
-            as="li"
-            variant="small"
-            color="inherit"
-            className="capitalize"
-          >
-            {href ? (
-              <a
-                href={href}
-                target={target}
-                className="flex items-center gap-1 p-1 font-normal"
-              >
-                {icon &&
-                  React.createElement(icon, {
-                    className: "w-[18px] h-[18px] opacity-75 mr-1",
-                  })}
-                {name}
-              </a>
-            ) : (
-              <Link
-                to={path}
-                target={target}
-                className="flex items-center gap-1 p-1 font-normal"
-              >
-                {icon &&
-                  React.createElement(icon, {
-                    className: "w-[18px] h-[18px] opacity-75 mr-1",
-                  })}
-                {name}
-              </Link>
-            )}
-          </Typography>
-        ))}
-      </ul>
-    </div>
+    <ul className="mb-4 mt-2 mr-40 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      {routes.map(({ name, path, icon, href, target }) => (
+        <Typography
+          key={name}
+          as="li"
+          variant="small"
+          color="inherit"
+          className="capitalize"
+        >
+          {href ? (
+            <a
+              href={href}
+              target={target}
+              className="flex items-center gap-1 p-1 font-normal"
+            >
+              {icon &&
+                React.createElement(icon, {
+                  className: "w-[18px] h-[18px] opacity-75 mr-1",
+                })}
+              {name}
+            </a>
+          ) : (
+            <Link
+              to={path}
+              target={target}
+              className="flex items-center gap-1 p-1 font-normal"
+            >
+              {icon &&
+                React.createElement(icon, {
+                  className: "w-[18px] h-[18px] opacity-75 mr-1",
+                })}
+              {name}
+            </Link>
+          )}
+        </Typography>
+      ))}
+    </ul>
   );
 
   return (

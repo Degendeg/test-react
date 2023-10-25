@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardBody,
@@ -19,8 +19,27 @@ export function Home() {
   const [fromEmail, setFromEmail] = useState('');
   const [message, setMessage] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
   const toEmail = 'sebbed89@hotmail.com';
   const apiKey = 'xsmtpsib-2690c55cb37011546df47318a21400c814ea77fb0218c8700d90de5ad810aa1a-IEhwsjVOH06ZxPDK';
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', checkIsMobile);
+
+    checkIsMobile();
+
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
 
   const sendEmail = async () => {
     const emailData = {
@@ -56,7 +75,7 @@ export function Home() {
   return (
     <>
       <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
-        <video autoPlay loop muted className="absolute top-0 h-full w-full object-cover bg-cover bg-center"
+        <video autoPlay loop muted playsInline className="absolute top-0 h-full w-full object-cover bg-cover bg-center"
           src="https://media.geeksforgeeks.org/wp-content/uploads/20221105184949/ezgif.com-gif-maker.mp4"
         />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
@@ -206,11 +225,12 @@ export function Home() {
           <PageTitle heading="Want to work with us?">
             Complete this form and we will get back to you in 24 hours.
           </PageTitle>
-          <form className="mx-auto mt-12 max-w-3xl text-center">
-            <div className="mb-8 flex gap-8">
-              <Input variant="standard" size="lg" label="Full Name"
+          <form className="mx-auto mt-12 max-w-2xl text-center">
+            <div className={`mb-8 gap-8 ${!isMobile ? 'flex' : ''}`}>
+              <Input variant="standard" size="lg" label="Name"
                 value={fullName} onChange={(e) => setFullName(e.target.value)} />
-              <Input variant="standard" size="lg" label="Email Address"
+              {isMobile && (<div className="py-4"></div>)}
+              <Input variant="standard" size="lg" label="Email"
                 value={fromEmail} onChange={(e) => setFromEmail(e.target.value)} />
             </div>
             <Textarea variant="standard" size="lg" label="Message" rows={8}
@@ -223,6 +243,11 @@ export function Home() {
         </div>
       </section>
       <div className="bg-blue-gray-50/50">
+        {isMobile && (
+          <div className="mx-auto pt-10 text-center">
+            <Button className="bg-gray-500 w-10/12" size="md" onClick={scrollToTop}>To top</Button>
+          </div>
+        )}
         <Footer />
       </div>
     </>
