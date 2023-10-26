@@ -13,6 +13,7 @@ import { UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
 import { FeatureCard, TeamCard } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
+import config from "../config/config";
 
 export function Home() {
   const [fullName, setFullName] = useState('');
@@ -22,10 +23,7 @@ export function Home() {
   const [responseMessage, setResponseMessage] = useState('');
   const [isMobile, setIsMobile] = useState(false);
   const [hours, setHours] = useState('');
-  const toEmail = 'sebastian.degerman@consid.se';
-  const basicAuth = 'Basic ' + btoa('admin:supersecret');
-  const URL = process.env.NODE_ENV === 'development' ?
-    'http://localhost:3000/' : 'https://r-t-server.azurewebsites.net/'
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -63,8 +61,10 @@ export function Home() {
   };
 
   const sendEmail = async () => {
+    setIsLoading(true);
+
     const emailData = {
-      to: toEmail,
+      to: config.toEmail,
       from: fromEmail,
       name: fullName,
       subject: document.title + ' User feedback',
@@ -72,24 +72,26 @@ export function Home() {
     };
 
     try {
-      const response = await fetch(URL + 'send', {
+      const response = await fetch(config.URL + config.sendURI, {
         method: 'POST',
         headers: {
-          'Authorization': basicAuth,
+          'Authorization': config.basicAuth,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(emailData),
       });
 
       if (response.ok) {
-        setResponseMessage('Email sent successfully');
+        setIsLoading(false);
+        setResponseMessage('Email sent successfully!');
+        setTimeout(() => setResponseMessage(''), 4444);
       } else {
         const responseData = await response.json();
         setResponseMessage('Error sending email: ' + responseData.message);
       }
     } catch (error) {
       console.error(error);
-      setResponseMessage('Error sending email');
+      setResponseMessage('Error sending email, please try again!');
     }
   };
 
@@ -266,10 +268,16 @@ export function Home() {
             </div>
             <Textarea variant="standard" size="lg" label="Your message" rows={8}
               value={message} onChange={(e) => setMessage(e.target.value)} />
-            <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail}>
-              Send Message
+            <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail} disabled={isLoading}>
+              {isLoading ? 'Sending...' : 'Send Message'}
             </Button>
-            <div className="p-4">{responseMessage}</div>
+            <div className="p-2"></div>
+            {responseMessage && (
+              <div className={`p-3 items-center text-white leading-none lg:rounded-full flex lg:inline-flex
+                ${responseMessage.includes("Error") ? 'bg-red-600' : 'bg-lime-600'}`} role="alert">
+                <span className="font-semibold mr-2 text-left flex-auto">{responseMessage}</span>
+              </div>
+            )}
           </form>
         </div>
       </section>
