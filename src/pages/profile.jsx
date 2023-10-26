@@ -85,24 +85,18 @@ export function Profile() {
               </div>
               <div className="my-8 text-center">
                 <Typography variant="h2" color="blue-gray" className="mb-2">
-                  Jenna Stones
+                  Anakin Skywalker af Vader
                 </Typography>
-                <div className="mb-16 flex items-center justify-center gap-2">
+                <div className="mb-2 flex items-center justify-center gap-2">
                   <MapPinIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
                   <Typography className="font-medium text-blue-gray-700">
-                    Los Angeles, California
+                    Stockholm, Sweden
                   </Typography>
                 </div>
                 <div className="mb-2 flex items-center justify-center gap-2">
                   <BriefcaseIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
                   <Typography className="font-medium text-blue-gray-700">
-                    Solution Manager - Creative Tim Officer
-                  </Typography>
-                </div>
-                <div className="mb-2 flex items-center justify-center gap-2">
-                  <BuildingLibraryIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
-                  <Typography className="font-medium text-blue-gray-700">
-                    University of Computer Science
+                    Frontend developer
                   </Typography>
                 </div>
               </div>

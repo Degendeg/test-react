@@ -17,21 +17,23 @@ import { featuresData, teamData, contactData } from "@/data";
 export function Home() {
   const [fullName, setFullName] = useState('');
   const [fromEmail, setFromEmail] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(true);
   const [message, setMessage] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
   const [isMobile, setIsMobile] = useState(false);
-  const toEmail = 'sebbed89@hotmail.com';
-  const apiKey = 'xsmtpsib-2690c55cb37011546df47318a21400c814ea77fb0218c8700d90de5ad810aa1a-IEhwsjVOH06ZxPDK';
+  const [hours, setHours] = useState('');
+  const toEmail = 'sebastian.degerman@consid.se';
+  const basicAuth = 'Basic ' + btoa('admin:supersecret');
+  const URL = process.env.NODE_ENV === 'development' ?
+    'http://localhost:3000/' : 'https://r-t-server.azurewebsites.net/'
 
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener('resize', checkIsMobile);
-
     checkIsMobile();
-
+    setHours(Math.floor(Math.random() * (24 - 12 + 1)) + 12)
     return () => {
       window.removeEventListener('resize', checkIsMobile);
     };
@@ -39,6 +41,25 @@ export function Home() {
 
   const scrollToTop = () => {
     window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  const validateEmail = (email) => {
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (email.length < 1) {
+      return true
+    } else {
+      return emailPattern.test(email);
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+    setFromEmail(email);
+    setIsEmailValid(validateEmail(email));
+  };
+
+  const handleEmailBlur = () => {
+    setIsEmailValid(validateEmail(fromEmail));
   };
 
   const sendEmail = async () => {
@@ -51,10 +72,10 @@ export function Home() {
     };
 
     try {
-      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      const response = await fetch(URL + 'send', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': basicAuth,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(emailData),
@@ -222,18 +243,28 @@ export function Home() {
               </Card>
             ))}
           </div>
-          <PageTitle heading="Want to work with us?">
-            Complete this form and we will get back to you in 24 hours.
+          <PageTitle heading="Any feedback?">
+            Complete this form and we will get back to you in ~{hours} hours.
           </PageTitle>
           <form className="mx-auto mt-12 max-w-2xl text-center">
             <div className={`mb-8 gap-8 ${!isMobile ? 'flex' : ''}`}>
-              <Input variant="standard" size="lg" label="Name"
+              <Input variant="standard" size="lg" label="Your name"
                 value={fullName} onChange={(e) => setFullName(e.target.value)} />
               {isMobile && (<div className="py-4"></div>)}
-              <Input variant="standard" size="lg" label="Email"
-                value={fromEmail} onChange={(e) => setFromEmail(e.target.value)} />
+              <Input
+                variant="standard"
+                size="lg"
+                label="Your email"
+                value={fromEmail}
+                onChange={handleEmailChange}
+                onBlur={handleEmailBlur}
+                style={{
+                  borderColor: isEmailValid ? '' : 'red',
+                  borderBottomWidth: isEmailValid ? '1px' : '6px'
+                }}
+              />
             </div>
-            <Textarea variant="standard" size="lg" label="Message" rows={8}
+            <Textarea variant="standard" size="lg" label="Your message" rows={8}
               value={message} onChange={(e) => setMessage(e.target.value)} />
             <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail}>
               Send Message
