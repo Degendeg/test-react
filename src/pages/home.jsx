@@ -60,6 +60,14 @@ export function Home() {
     setIsEmailValid(validateEmail(fromEmail));
   };
 
+  const clearForm = () => {
+    setFullName('');
+    setFromEmail('');
+    setIsEmailValid(true);
+    setMessage('');
+    setResponseMessage('');
+  };
+
   const sendEmail = async () => {
     setIsLoading(true);
 
@@ -84,13 +92,15 @@ export function Home() {
       if (response.ok) {
         setIsLoading(false);
         setResponseMessage('Email sent successfully!');
-        setTimeout(() => setResponseMessage(''), 4444);
+        setTimeout(() => clearForm(), config.interval);
       } else {
         const responseData = await response.json();
+        setIsLoading(false);
         setResponseMessage('Error sending email: ' + responseData.message);
       }
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
       setResponseMessage('Error sending email, please try again!');
     }
   };
@@ -268,14 +278,21 @@ export function Home() {
             </div>
             <Textarea variant="standard" size="lg" label="Your message" rows={8}
               value={message} onChange={(e) => setMessage(e.target.value)} />
-            <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail} disabled={isLoading}>
-              {isLoading ? 'Sending...' : 'Send Message'}
-            </Button>
-            <div className="p-2"></div>
+            {!responseMessage && (
+              <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail} disabled={isLoading}>
+                {isLoading ? 'Sending...' : 'Send Message'}
+              </Button>
+            )}
             {responseMessage && (
-              <div className={`p-3 items-center text-white leading-none lg:rounded-full flex lg:inline-flex
-                ${responseMessage.includes("Error") ? 'bg-red-600' : 'bg-lime-600'}`} role="alert">
-                <span className="font-semibold mr-2 text-left flex-auto">{responseMessage}</span>
+              <div className="wrapper">
+                <Button variant="gradient" size="lg" className="mt-8" onClick={clearForm}>
+                  Clear form
+                </Button>
+                <div className="p-2"></div>
+                <div className={`p-3 items-center text-white leading-none lg:rounded-full flex lg:inline-flex
+                  ${responseMessage.includes("Error") ? 'bg-red-600' : 'bg-lime-600'}`} role="alert">
+                  <span className="font-semibold mr-2 text-left flex-auto">{responseMessage}</span>
+                </div>
               </div>
             )}
           </form>

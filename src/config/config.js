@@ -4,7 +4,8 @@ const config = {
   URL: process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'https://r-t-server.azurewebsites.net',
-  sendURI: '/send'
+  sendURI: '/send',
+  interval: 4444
 };
 
 export default config;
