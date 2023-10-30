@@ -120,12 +120,13 @@ export function Home() {
                 color="white"
                 className="mb-6 font-black"
               >
-                Your story starts with us.
+                This a fake company without meaning.
               </Typography>
               <Typography variant="lead" color="white" className="opacity-80">
-                This is a simple example of a Landing Page you can build using
-                Material Tailwind. It features multiple components based on the
-                Tailwind CSS and Material Design by Google.
+                Vivamus imperdiet ligula ligula, non fringilla urna efficitur pulvinar.
+                Suspendisse in felis in tortor tincidunt ullamcorper at at urna.
+                Duis dignissim sit amet augue id porttitor.
+                Aenean diam nulla, rhoncus vel erat nec, sollicitudin porttitor purus.
               </Typography>
             </div>
           </div>
@@ -255,7 +256,7 @@ export function Home() {
               </Card>
             ))}
           </div>
-          <PageTitle heading="Any feedback?">
+          <PageTitle heading="Any feedback?" id="contactHeader">
             Complete this form and we will get back to you in ~{hours} hours.
           </PageTitle>
           <form className="mx-auto mt-12 max-w-2xl text-center">
@@ -279,7 +280,8 @@ export function Home() {
             <Textarea variant="standard" size="lg" label="Your message" rows={8}
               value={message} onChange={(e) => setMessage(e.target.value)} />
             {!responseMessage && (
-              <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail} disabled={isLoading}>
+              <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail}
+                disabled={isLoading || !fullName || !fromEmail || !message}>
                 {isLoading ? 'Sending...' : 'Send Message'}
               </Button>
             )}
@@ -299,11 +301,10 @@ export function Home() {
         </div>
       </section>
       <div className="bg-blue-gray-50/50">
-        {isMobile && (
-          <div className="mx-auto pt-10 text-center">
-            <Button className="bg-gray-500 w-10/12" size="md" onClick={scrollToTop}>To top</Button>
-          </div>
-        )}
+        <div className="mx-auto pt-10 text-center">
+          <Button className={`bg-gray-500 ${isMobile ? 'w-10/12' : ''}`}
+            size="md" onClick={scrollToTop}>To top</Button>
+        </div>
         <Footer />
       </div>
     </>

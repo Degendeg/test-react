@@ -9,9 +9,13 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useLocation } from 'react-router-dom';
 
 export function Navbar({ brandName, routes, action }) {
   const [openNav, setOpenNav] = React.useState(false);
+  const location = useLocation();
+  
+  const isHome = location.pathname === '/home';
 
   React.useEffect(() => {
     window.addEventListener(
@@ -34,7 +38,7 @@ export function Navbar({ brandName, routes, action }) {
             <a
               href={href}
               target={target}
-              className="flex items-center gap-1 p-1 font-normal"
+              className={`flex items-center gap-1 p-1 font-normal ${!isHome ? 'pointer-events-none opacity-50' : ''}`}
             >
               {icon &&
                 React.createElement(icon, {
