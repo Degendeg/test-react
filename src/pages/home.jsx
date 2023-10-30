@@ -281,7 +281,7 @@ export function Home() {
               value={message} onChange={(e) => setMessage(e.target.value)} />
             {!responseMessage && (
               <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail}
-                disabled={isLoading || !fullName || !fromEmail || !message}>
+                disabled={isLoading || !fullName || (!fromEmail || (fromEmail && !isEmailValid)) || !message}>
                 {isLoading ? 'Sending...' : 'Send Message'}
               </Button>
             )}
