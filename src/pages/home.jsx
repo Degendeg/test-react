@@ -160,14 +160,13 @@ export function Home() {
                 Working with us is a pleasure
               </Typography>
               <Typography className="mb-8 font-normal text-blue-gray-500">
-                Don't let your uses guess by attaching tooltips and popoves to
-                any element. Just make sure you enable them first via
-                JavaScript.
-                <br />
-                <br />
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go. Just make sure you enable them first via JavaScript.
+                Sed ut nisi ante. Vivamus ex eros, sodales at dolor et, condimentum congue turpis.
+                Suspendisse nibh risus, volutpat sit amet sodales vitae, pretium at augue. Suspendisse potenti.
+                Integer vehicula tellus vitae ante suscipit viverra. Aliquam erat volutpat. Mauris quis placerat lectus.
+                <br /><br />
+                Aliquam urna urna, iaculis eu nulla at, dictum cursus metus. Aenean eleifend laoreet enim vel scelerisque.
+                Quisque eu risus at lacus feugiat viverra. Nulla non nisi egestas, ornare augue sed, maximus odio.
+                Sed sagittis scelerisque est, et iaculis dolor porttitor sed.
               </Typography>
               <Button variant="outlined">read more</Button>
             </div>
@@ -202,9 +201,7 @@ export function Home() {
       <section className="px-4 pt-20 pb-48">
         <div className="container mx-auto">
           <PageTitle heading="Meet our employees">
-            According to the National Oceanic and Atmospheric Administration,
-            Ted, Scambos, NSIDClead scentist, puts the potentially record
-            maximum.
+            They are surely the coolest developers to ever exist.
           </PageTitle>
           <div className="mt-24 grid grid-cols-1 gap-12 gap-x-24 md:grid-cols-2 xl:grid-cols-4">
             {teamData.map(({ img, name, position, socials }) => (
@@ -230,9 +227,7 @@ export function Home() {
       <section className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
           <PageTitle heading="Build something">
-            Put the potentially record low maximum sea ice extent tihs year down
-            to low ice. According to the National Oceanic and Atmospheric
-            Administration, Ted, Scambos.
+            Why should we build?
           </PageTitle>
           <div className="mx-auto mt-20 mb-48 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
             {contactData.map(({ title, icon, description }) => (

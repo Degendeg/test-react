@@ -17,14 +17,14 @@ export const featuresData = [
     title: "Free Revisions",
     icon: ArrowPathIcon,
     description:
-      "Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious.",
+      "Keep your user engaged by providing meaningful information. Remember that by this time, the user is curious.",
   },
   {
     color: "teal",
     title: "Verified Company",
     icon: FingerPrintIcon,
     description:
-      "Write a few lines about each one. A paragraph describing a feature will be enough. Keep you user engaged!",
+      "Write a few lines about each one. A paragraph describing a feature will be enough. Keep your user engaged!",
   },
 ];
 

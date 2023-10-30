@@ -79,54 +79,45 @@ export function Footer({ title, description, socials, menus, copyright }) {
 }
 
 Footer.defaultProps = {
-  title: "Material Tailwind",
+  title: "FakeCompany™",
   description:
-    "Easy to use React components for Tailwind CSS and Material Design.",
+    "We do not have any purpose so this description is pointless.",
   socials: [
     {
-      color: "blue",
-      name: "facebook",
-      path: "https://www.facebook.com/CreativeTim",
+      color: "black",
+      name: "steam",
+      path: "https://steamcommunity.com/id/degelina",
     },
     {
-      color: "light-blue",
-      name: "twitter",
-      path: "https://www.twitter.com/creativetim",
-    },
-    {
-      color: "purple",
-      name: "instagram",
-      path: "https://www.instagram.com/creativetimofficial/",
-    },
-    {
-      color: "pink",
-      name: "dribbble",
-      path: "https://www.dribbble.com/creativetim",
-    },
-    {
-      color: "red",
-      name: "youtube",
-      path: "https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w",
+      color: "black",
+      name: "chrome",
+      path: "https://sebastian-degerman.azurewebsites.net/",
     },
     {
       color: "black",
       name: "github",
-      path: "https://github.com/creativetimofficial/material-tailwind",
+      path: "https://github.com/Degendeg",
     },
   ],
   menus: [
     {
       name: "useful links",
       items: [
-        { name: "About Us", path: "https://www.creative-tim.com/presentation" },
-        { name: "Blog", path: "https://www.creative-tim.com/blog" },
         {
-          name: "Github",
-          path: "https://www.github.com/creativetimofficial/material-tailwind?ref=mtk",
+          name: "Codingame",
+          path: "https://www.codingame.com",
         },
         {
-          name: "Free Products",
-          path: "https://www.creative-tim.com/templates/free?ref=mtk",
+          name: "Upload an image",
+          path: "https://upload-img.azurewebsites.net",
+        },
+        {
+          name: "ChatGPT",
+          path: "https://chat.openai.com",
+        },
+        {
+          name: "Hexcolor",
+          path: "https://hexcolor.azurewebsites.net",
         },
       ],
     },
@@ -134,20 +125,20 @@ Footer.defaultProps = {
       name: "other resources",
       items: [
         {
-          name: "MIT License",
-          path: "https://github.com/creativetimofficial/material-tailwind/blob/main/LICENSE.md?ref=mtk",
+          name: "License",
+          path: "",
         },
         {
-          name: "Contribute",
-          path: "https://github.com/creativetimofficial/material-tailwind/blob/main/CONTRIBUTING.md?ref=mtk",
+          name: "News",
+          path: "",
         },
         {
-          name: "Change Log",
-          path: "https://github.com/creativetimofficial/material-tailwind/blob/main/CHANGELOG.md?ref=mtk",
+          name: "Updated",
+          path: "",
         },
         {
-          name: "Contact Us",
-          path: "https://creative-tim.com/contact-us?ref=mtk",
+          name: "Contact",
+          path: "mailto:sebastian.degerman@consid.se",
         },
       ],
     },

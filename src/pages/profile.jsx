@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Avatar, Typography, Button } from "@material-tailwind/react";
 import {
   MapPinIcon,
@@ -7,6 +8,15 @@ import {
 import { Footer } from "@/widgets/layout";
 
 export function Profile() {
+  const [connection, setConnection] = useState('Connect');
+  const showConnection = () => {
+    if (confirm("Do you want to connect with " + document.getElementById('typo-full-name').innerHTML + "?")) {
+      setConnection('~ Connected ~');
+    } else {
+      setConnection('Connect');
+    }
+  };
+
   return (
     <>
       <section className="relative block h-[50vh]">
@@ -31,7 +41,7 @@ export function Profile() {
                   </div>
                 </div>
                 <div className="mt-10 flex w-full justify-center px-4 lg:order-3 lg:mt-0 lg:w-4/12 lg:justify-end lg:self-center">
-                  <Button className="bg-blue-400">Connect</Button>
+                  <Button onClick={showConnection} className="bg-blue-400">{connection}</Button>
                 </div>
                 <div className="w-full px-4 lg:order-1 lg:w-4/12">
                   <div className="flex justify-center py-4 pt-8 lg:pt-4">
@@ -84,7 +94,7 @@ export function Profile() {
                 </div>
               </div>
               <div className="my-8 text-center">
-                <Typography variant="h2" color="blue-gray" className="mb-2">
+                <Typography id="typo-full-name" variant="h2" color="blue-gray" className="mb-2">
                   Anakin Skywalker af Vader
                 </Typography>
                 <div className="mb-2 flex items-center justify-center gap-2">
@@ -105,11 +115,9 @@ export function Profile() {
                 <div className="mt-2 flex flex-wrap justify-center">
                   <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
                     <Typography className="mb-8 font-normal text-blue-gray-500">
-                      An artist of considerable range, Jenna the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                      performs and records all of his own music, giving it a
-                      warm, intimate feel with a solid groove structure. An
-                      artist of considerable range.
+                      Sed ut nisi ante. Vivamus ex eros, sodales at dolor et, condimentum congue turpis.
+                      Suspendisse nibh risus, volutpat sit amet sodales vitae, pretium at augue. Suspendisse potenti.
+                      Integer vehicula tellus vitae ante suscipit viverra. Aliquam erat volutpat.
                     </Typography>
                     <Button variant="text">Show more</Button>
                   </div>
