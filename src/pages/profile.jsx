@@ -39,8 +39,7 @@ export function Profile() {
   };
 
   const showConnection = () => {
-    if (confirm("Do you want to connect with " +
-      document.getElementById('typo-full-name').innerHTML + "?")) {
+    if (confirm("Do you want to connect with " + location.state.name + "?")) {
       setConnection('Connected');
     } else {
       setConnection('Connect');
@@ -127,7 +126,7 @@ export function Profile() {
                 </div>
               </div>
               <div className="my-8 text-center">
-                <Typography id="typo-full-name" variant="h2" color="blue-gray" className="mb-2">
+                <Typography variant="h2" color="blue-gray" className="mb-2">
                   {location.state.name}
                 </Typography>
                 <div className="mb-2 flex items-center justify-center gap-2">
