@@ -10,14 +10,14 @@ import {
 export const routes = [
   {
     icon: HomeIcon,
-    name: "home",
+    name: "Home",
     path: "/home",
     element: <Home />,
   },
   {
     icon: UserCircleIcon,
-    name: "profile",
-    path: "/profile",
+    name: "Profile",
+    path: "/profile/:id",
     element: <Profile />,
   },
   {

@@ -1,17 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
+import { useParams, useLocation } from 'react-router-dom';
 import { Avatar, Typography, Button } from "@material-tailwind/react";
 import {
   MapPinIcon,
   BriefcaseIcon,
-  BuildingLibraryIcon,
 } from "@heroicons/react/24/solid";
 import { Footer } from "@/widgets/layout";
 
 export function Profile() {
-  const [connection, setConnection] = useState('Connect');
+  const [connection, setConnection] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { id } = useParams();
+  const location = useLocation();
+  const initialText = "At vero eos et accusamus et iusto odio" +
+  "dignissimos ducimus qui blanditiis praesentium voluptatum" +
+  "deleniti atque corrupti quos dolores et quas molestias" +
+  "excepturi sint occaecati cupiditate non provident, similique" +
+  "sunt in culpa qui officia deserunt mollitia animi, id est" +
+  "laborum et dolorum fuga. Et harum quidem rerum facilis est et" +
+  "expedita distinctio. <br /><br /> Nam libero tempore, cum soluta" +
+  "nobis est eligendi optio cumque nihil impedit quo minus id quod maxime" +
+  "placeat facere possimus, omnis voluptas assumenda est, omnis dolor" +
+  "repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum" +
+  "necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae" +
+  "non recusandae. <br /><br /> Itaque earum rerum hic tenetur a sapiente delectus," +
+  "ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis" +
+  "doloribus asperiores repellat. Et voluptates repudiandae sint et molestiae non recusandae!";
+
+  useLayoutEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
+  const toggleText = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const showConnection = () => {
-    if (confirm("Do you want to connect with " + document.getElementById('typo-full-name').innerHTML + "?")) {
-      setConnection('~ Connected ~');
+    if (confirm("Do you want to connect with " +
+      document.getElementById('typo-full-name').innerHTML + "?")) {
+      setConnection('Connected');
     } else {
       setConnection('Connect');
     }
@@ -20,7 +50,7 @@ export function Profile() {
   return (
     <>
       <section className="relative block h-[50vh]">
-        <div className="bg-profile-background absolute top-0 h-full w-full bg-[url('/img/background-1.jpg')] bg-cover bg-center" />
+        <div className={`bg-profile-background absolute top-0 h-full w-full bg-[url('/img/background-${id}.jpg')] bg-cover bg-center`} />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
       </section>
       <section className="relative bg-blue-gray-50/50 py-16 px-4">
@@ -32,7 +62,7 @@ export function Profile() {
                   <div className="relative">
                     <div className="-mt-20 w-40">
                       <Avatar
-                        src="/img/team-2.jpg"
+                        src={`/img/team-${id}.jpg`}
                         alt="Profile picture"
                         variant="circular"
                         className="h-full w-full shadow-xl"
@@ -41,7 +71,9 @@ export function Profile() {
                   </div>
                 </div>
                 <div className="mt-10 flex w-full justify-center px-4 lg:order-3 lg:mt-0 lg:w-4/12 lg:justify-end lg:self-center">
-                  <Button onClick={showConnection} className="bg-blue-400">{connection}</Button>
+                  <Button disabled={connection === 'Connected'} onClick={showConnection} className={`${connection === 'Connected' ? 'bg-green-400' : 'bg-blue-400'}`}>
+                    {connection ? connection : "Connect"}
+                  </Button>
                 </div>
                 <div className="w-full px-4 lg:order-1 lg:w-4/12">
                   <div className="flex justify-center py-4 pt-8 lg:pt-4">
@@ -95,18 +127,18 @@ export function Profile() {
               </div>
               <div className="my-8 text-center">
                 <Typography id="typo-full-name" variant="h2" color="blue-gray" className="mb-2">
-                  Anakin Skywalker af Vader
+                  {location.state.name}
                 </Typography>
                 <div className="mb-2 flex items-center justify-center gap-2">
                   <MapPinIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
                   <Typography className="font-medium text-blue-gray-700">
-                    Stockholm, Sweden
+                  {location.state.location}
                   </Typography>
                 </div>
                 <div className="mb-2 flex items-center justify-center gap-2">
                   <BriefcaseIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
                   <Typography className="font-medium text-blue-gray-700">
-                    Frontend developer
+                    {location.state.position}
                   </Typography>
                 </div>
               </div>
@@ -114,12 +146,12 @@ export function Profile() {
               <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
                 <div className="mt-2 flex flex-wrap justify-center">
                   <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
+                    <Button className="mb-4" variant="text" onClick={toggleText}>
+                      {isExpanded ? 'Show less' : 'Show more'}
+                    </Button>
                     <Typography className="mb-8 font-normal text-blue-gray-500">
-                      Sed ut nisi ante. Vivamus ex eros, sodales at dolor et, condimentum congue turpis.
-                      Suspendisse nibh risus, volutpat sit amet sodales vitae, pretium at augue. Suspendisse potenti.
-                      Integer vehicula tellus vitae ante suscipit viverra. Aliquam erat volutpat.
+                      <div dangerouslySetInnerHTML={{ __html: isExpanded ? initialText : `${initialText.slice(0, 100)}...` }} />
                     </Typography>
-                    <Button variant="text">Show more</Button>
                   </div>
                 </div>
               </div>

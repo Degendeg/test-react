@@ -1,15 +1,19 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { Card, Avatar, Typography } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
-export function TeamCard({ img, name, position, socials }) {
+export function TeamCard({ id, img, name, position, location, socials }) {
   return (
     <Card color="transparent" shadow={false} className="text-center">
-      <Avatar
-        src={img}
-        alt={name}
-        size="xxl"
-        className="h-full w-full shadow-lg shadow-gray-500/25"
-      />
+      <Link to={`/profile/${id}`} state={{ img, name, position, location }}>
+        <Avatar
+          src={img}
+          alt={name}
+          size="xxl"
+          className="h-full w-full shadow-lg shadow-gray-500/25"
+        />
+      </Link>
       <Typography variant="h5" color="blue-gray" className="mt-6 mb-1">
         {name}
       </Typography>
