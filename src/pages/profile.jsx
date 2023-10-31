@@ -50,7 +50,8 @@ export function Profile() {
   return (
     <>
       <section className="relative block h-[50vh]">
-        <div className={`bg-profile-background absolute top-0 h-full w-full bg-[url('/img/background-${id}.jpg')] bg-cover bg-center`} />
+        <div style={{backgroundImage: `url(${ "/img/background-" + id + ".jpg"})` }}
+          className={`bg-profile-background absolute top-0 h-full w-full bg-cover bg-center`} />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
       </section>
       <section className="relative bg-blue-gray-50/50 py-16 px-4">
@@ -150,7 +151,7 @@ export function Profile() {
                       {isExpanded ? 'Show less' : 'Show more'}
                     </Button>
                     <Typography className="mb-8 font-normal text-blue-gray-500">
-                      <div dangerouslySetInnerHTML={{ __html: isExpanded ? initialText : `${initialText.slice(0, 100)}...` }} />
+                      <span dangerouslySetInnerHTML={{ __html: isExpanded ? initialText : `${initialText.slice(0, 100)}...` }} />
                     </Typography>
                   </div>
                 </div>
