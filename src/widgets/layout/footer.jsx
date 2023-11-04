@@ -1,9 +1,16 @@
 import PropTypes from "prop-types";
-import { Typography, IconButton } from "@material-tailwind/react";
+import { Button, Typography, IconButton } from "@material-tailwind/react";
+import {
+  ArrowUpCircleIcon,
+} from "@heroicons/react/24/solid";
 
 const year = new Date().getFullYear();
 
 export function Footer({ title, description, socials, menus, copyright }) {
+  const scrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
   return (
     <footer className="relative px-4 pt-8 pb-6">
       <div className="container mx-auto">
@@ -70,6 +77,11 @@ export function Footer({ title, description, socials, menus, copyright }) {
               className="font-normal text-blue-gray-500"
             >
               {copyright}
+              <IconButton color="white" className="rounded-full mx-4 mb-2" onClick={scrollToTop}>
+                <Typography color="black">
+                  <ArrowUpCircleIcon className="-mt-px h-9 w-9 text-blue-gray-700" />
+                </Typography>
+              </IconButton>
             </Typography>
           </div>
         </div>

@@ -37,10 +37,6 @@ export function Home() {
     };
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  };
-
   const validateEmail = (email) => {
     const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (email.length < 1) {
@@ -298,10 +294,6 @@ export function Home() {
         </div>
       </section>
       <div className="bg-blue-gray-50/50">
-        <div className="mx-auto pt-10 text-center">
-          <Button className={`bg-gray-500 ${isMobile ? 'w-10/12' : ''}`}
-            size="md" onClick={scrollToTop}>To top</Button>
-        </div>
         <Footer />
       </div>
     </>
