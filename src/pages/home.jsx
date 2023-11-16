@@ -105,7 +105,7 @@ export function Home() {
     <>
       <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
         <video autoPlay loop muted playsInline className="absolute top-0 h-full w-full object-cover bg-cover bg-center"
-          src="https://media.geeksforgeeks.org/wp-content/uploads/20221105184949/ezgif.com-gif-maker.mp4"
+          src="/vid/722779149.mp4"
         />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
         <div className="max-w-8xl container relative mx-auto">
