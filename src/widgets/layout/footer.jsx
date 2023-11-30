@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 
 export function Footer({ title, description, socials, menus, copyright }) {
   const scrollToTop = () => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -71,16 +71,14 @@ export function Footer({ title, description, socials, menus, copyright }) {
         </div>
         <hr className="my-8 border-gray-500" />
         <div className="flex flex-wrap items-center justify-center md:justify-between">
-          <div className="mx-auto w-full px-4 text-center">
+          <div className="mx-auto w-full px-8 text-center">
             <Typography
               variant="small"
               className="font-normal text-blue-gray-500"
             >
               {copyright}
-              <IconButton color="white" className="rounded-full mx-4 mb-2" onClick={scrollToTop}>
-                <Typography color="black">
-                  <ArrowUpCircleIcon className="-mt-px h-9 w-9 text-blue-gray-700" />
-                </Typography>
+              <IconButton variant="text" className="rounded-full mx-2" onClick={scrollToTop}>
+                <ArrowUpCircleIcon className="-mt-px h-8 w-8 text-blue-gray-700"/>
               </IconButton>
             </Typography>
           </div>

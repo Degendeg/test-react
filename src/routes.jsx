@@ -35,8 +35,6 @@ export const routes = [
   {
     icon: LinkIcon,
     name: "Contact",
-    href: "#contactHeader",
-    target: "_self"
   },
 ];
 

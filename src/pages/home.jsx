@@ -249,7 +249,7 @@ export function Home() {
               </Card>
             ))}
           </div>
-          <PageTitle heading="Any feedback?" id="contactHeader">
+          <PageTitle heading="Any feedback?">
             Complete this form and we will get back to you in ~{hours} hours.
           </PageTitle>
           <form className="mx-auto mt-12 max-w-2xl text-center">
@@ -273,7 +273,7 @@ export function Home() {
             <Textarea variant="standard" size="lg" label="Your message" rows={8}
               value={message} onChange={(e) => setMessage(e.target.value)} />
             {!responseMessage && (
-              <Button variant="gradient" size="lg" className="mt-8" onClick={sendEmail}
+              <Button variant="gradient" size="lg" id="contactForm" className="mt-8" onClick={sendEmail}
                 disabled={isLoading || !fullName || (!fromEmail || (fromEmail && !isEmailValid)) || !message}>
                 {isLoading ? 'Sending...' : 'Send Message'}
               </Button>

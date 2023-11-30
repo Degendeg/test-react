@@ -40,7 +40,7 @@ export function SignUp() {
               size="lg"
             />
             <div className="-ml-2.5">
-              <Checkbox label="I agree the Terms and Conditions" />
+              <Checkbox label="I agree to the Terms and Conditions" />
             </div>
           </CardBody>
           <CardFooter className="pt-0">
