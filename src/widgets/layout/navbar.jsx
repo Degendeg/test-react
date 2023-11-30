@@ -9,10 +9,14 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useLocation } from 'react-router-dom';
 
 export function Navbar({ brandName, routes, action }) {
   const [openNav, setOpenNav] = React.useState(false);
   
+  const location = useLocation();
+  const isHome = location.pathname === '/home';
+
   const goToContact = (id) => {
     const element = document.getElementById(id);
     element.scrollIntoView({ block: 'center',  behavior: 'smooth' });
@@ -51,7 +55,7 @@ export function Navbar({ brandName, routes, action }) {
             <Link
               to={path}
               target={target}
-              className="flex items-center gap-1 p-1 font-normal"
+              className={`flex items-center gap-1 p-1 font-normal ${(!isHome && name === 'Contact') ? 'pointer-events-none opacity-50' : ''}`}
               onClick={() => {
                 if (name === 'Contact') {
                   goToContact('contactForm');
