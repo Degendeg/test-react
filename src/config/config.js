@@ -5,7 +5,8 @@ const config = {
     ? 'http://localhost:3000'
     : 'https://r-t-server.azurewebsites.net',
   sendURI: '/send',
-  interval: 4444
+  interval: 4444,
+  DATO_KEY: 'b34d980a48010c75bc03728dbd2df2'
 };
 
 export default config;

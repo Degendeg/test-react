@@ -13,6 +13,8 @@ import { UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
 import { FeatureCard, TeamCard } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
+import DOMPurify from 'dompurify';
+import getFromDato from '../data/datocms-data';
 import config from "../config/config";
 
 export function Home() {
@@ -20,6 +22,7 @@ export function Home() {
   const [fromEmail, setFromEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [message, setMessage] = useState('');
+  const [data, setData] = useState(null);
   const [responseMessage, setResponseMessage] = useState('');
   const [isMobile, setIsMobile] = useState(false);
   const [hours, setHours] = useState('');
@@ -35,6 +38,29 @@ export function Home() {
     return () => {
       window.removeEventListener('resize', checkIsMobile);
     };
+  }, []);
+
+  useEffect(() => {
+    getFromDato(
+      `
+      query {
+        home {
+          sect1
+          sect2
+          sect2Subsect1
+        }
+        misc {
+          readMore
+        }
+      }
+      `
+    )
+    .then(res => {
+      setData(res);
+    })
+    .catch(error => {
+      console.error(error.message);
+    });
   }, []);
 
   const validateEmail = (email) => {
@@ -111,19 +137,7 @@ export function Home() {
         <div className="max-w-8xl container relative mx-auto">
           <div className="flex flex-wrap items-center">
             <div className="ml-auto mr-auto w-full px-4 text-center lg:w-8/12">
-              <Typography
-                variant="h1"
-                color="white"
-                className="mb-6 font-black"
-              >
-                This a fake company without meaning.
-              </Typography>
-              <Typography variant="lead" color="white" className="opacity-80">
-                Vivamus imperdiet ligula ligula, non fringilla urna efficitur pulvinar.
-                Suspendisse in felis in tortor tincidunt ullamcorper at at urna.
-                Duis dignissim sit amet augue id porttitor.
-                Aenean diam nulla, rhoncus vel erat nec, sollicitudin porttitor purus.
-              </Typography>
+              {data && <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.home.sect1) }} />}
             </div>
           </div>
         </div>
@@ -148,23 +162,10 @@ export function Home() {
               <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white p-3 text-center shadow-lg">
                 <UsersIcon className="h-6 w-6 text-blue-gray-900" />
               </div>
-              <Typography
-                variant="h3"
-                className="mb-3 font-bold"
-                color="blue-gray"
-              >
-                Working with us is a pleasure
-              </Typography>
-              <Typography className="mb-8 font-normal text-blue-gray-500">
-                Sed ut nisi ante. Vivamus ex eros, sodales at dolor et, condimentum congue turpis.
-                Suspendisse nibh risus, volutpat sit amet sodales vitae, pretium at augue. Suspendisse potenti.
-                Integer vehicula tellus vitae ante suscipit viverra. Aliquam erat volutpat. Mauris quis placerat lectus.
-                <br /><br />
-                Aliquam urna urna, iaculis eu nulla at, dictum cursus metus. Aenean eleifend laoreet enim vel scelerisque.
-                Quisque eu risus at lacus feugiat viverra. Nulla non nisi egestas, ornare augue sed, maximus odio.
-                Sed sagittis scelerisque est, et iaculis dolor porttitor sed.
-              </Typography>
-              <Button variant="outlined">read more</Button>
+              {data && <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.home.sect2) }} />}
+              <Button variant="outlined">
+                {data && <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.misc.readMore) }} />}
+              </Button>
             </div>
             <div className="mx-auto mt-24 flex w-full justify-center px-4 md:w-4/12 lg:mt-0">
               <Card className="shadow-lg shadow-gray-500/10">
@@ -176,18 +177,7 @@ export function Home() {
                   />
                 </CardHeader>
                 <CardBody>
-                  <Typography
-                    variant="h5"
-                    color="blue-gray"
-                    className="mb-3 font-bold"
-                  >
-                    Top Notch Services
-                  </Typography>
-                  <Typography className="font-normal text-blue-gray-500">
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens.
-                  </Typography>
+                  {data && <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.home.sect2Subsect1) }} />}
                 </CardBody>
               </Card>
             </div>
