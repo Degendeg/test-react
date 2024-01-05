@@ -16,13 +16,18 @@ const fetchFromDato = async (q) => {
     });
 
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('Network response not OK');
     }
 
     const data = await response.json();
+
+    if (Object.hasOwn(data, 'errors')) {
+      throw new Error(data.errors[0].message);
+    }
+
     return data.data;
   } catch (error) {
-    throw new Error('There was a problem with fetching from DatoCMS:', error);
+    throw new Error('There was a problem with fetching from DatoCMS: ' + error.message);
   }
 };
 

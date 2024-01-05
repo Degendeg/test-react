@@ -22,7 +22,7 @@ export const routes = [
   },
   {
     icon: ArrowRightOnRectangleIcon,
-    name: "Sign In",
+    name: "Login",
     path: "/sign-in",
     element: <SignIn />,
   },
