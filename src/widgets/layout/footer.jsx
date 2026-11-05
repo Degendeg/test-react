@@ -78,7 +78,7 @@ export function Footer({ title, description, socials, menus, copyright }) {
             >
               {copyright}
               <IconButton variant="text" className="rounded-full mx-2" onClick={scrollToTop}>
-                <ArrowUpCircleIcon className="-mt-px h-8 w-8 text-blue-gray-700"/>
+                <ArrowUpCircleIcon className="-mt-px h-8 w-8 text-blue-gray-700" />
               </IconButton>
             </Typography>
           </div>

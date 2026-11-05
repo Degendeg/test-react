@@ -13,13 +13,13 @@ import { useLocation } from 'react-router-dom';
 
 export function Navbar({ brandName, routes, action }) {
   const [openNav, setOpenNav] = React.useState(false);
-  
+
   const location = useLocation();
   const isHome = location.pathname === '/home';
 
   const goToContact = (id) => {
     const element = document.getElementById(id);
-    element.scrollIntoView({ block: 'center',  behavior: 'smooth' });
+    element.scrollIntoView({ block: 'center', behavior: 'smooth' });
   };
 
   React.useEffect(() => {

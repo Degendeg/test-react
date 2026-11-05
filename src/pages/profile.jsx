@@ -13,19 +13,19 @@ export function Profile() {
   const { id } = useParams();
   const location = useLocation();
   const initialText = "At vero eos et accusamus et iusto odio" +
-  "dignissimos ducimus qui blanditiis praesentium voluptatum" +
-  "deleniti atque corrupti quos dolores et quas molestias" +
-  "excepturi sint occaecati cupiditate non provident, similique" +
-  "sunt in culpa qui officia deserunt mollitia animi, id est" +
-  "laborum et dolorum fuga. Et harum quidem rerum facilis est et" +
-  "expedita distinctio. <br /><br /> Nam libero tempore, cum soluta" +
-  "nobis est eligendi optio cumque nihil impedit quo minus id quod maxime" +
-  "placeat facere possimus, omnis voluptas assumenda est, omnis dolor" +
-  "repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum" +
-  "necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae" +
-  "non recusandae. <br /><br /> Itaque earum rerum hic tenetur a sapiente delectus," +
-  "ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis" +
-  "doloribus asperiores repellat. Et voluptates repudiandae sint et molestiae non recusandae!";
+    "dignissimos ducimus qui blanditiis praesentium voluptatum" +
+    "deleniti atque corrupti quos dolores et quas molestias" +
+    "excepturi sint occaecati cupiditate non provident, similique" +
+    "sunt in culpa qui officia deserunt mollitia animi, id est" +
+    "laborum et dolorum fuga. Et harum quidem rerum facilis est et" +
+    "expedita distinctio. <br /><br /> Nam libero tempore, cum soluta" +
+    "nobis est eligendi optio cumque nihil impedit quo minus id quod maxime" +
+    "placeat facere possimus, omnis voluptas assumenda est, omnis dolor" +
+    "repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum" +
+    "necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae" +
+    "non recusandae. <br /><br /> Itaque earum rerum hic tenetur a sapiente delectus," +
+    "ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis" +
+    "doloribus asperiores repellat. Et voluptates repudiandae sint et molestiae non recusandae!";
 
   useLayoutEffect(() => {
     window.scrollTo({
@@ -49,7 +49,7 @@ export function Profile() {
   return (
     <>
       <section className="relative block h-[50vh]">
-        <div style={{backgroundImage: `url(${ "/img/background-" + id + ".jpg"})` }}
+        <div style={{ backgroundImage: `url(${"/img/background-" + id + ".jpg"})` }}
           className={`bg-profile-background absolute top-0 h-full w-full bg-cover bg-center`} />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
       </section>
@@ -132,7 +132,7 @@ export function Profile() {
                 <div className="mb-2 flex items-center justify-center gap-2">
                   <MapPinIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
                   <Typography className="font-medium text-blue-gray-700">
-                  {location.state.location}
+                    {location.state.location}
                   </Typography>
                 </div>
                 <div className="mb-2 flex items-center justify-center gap-2">

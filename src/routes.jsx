@@ -2,7 +2,7 @@ import { Home, Profile, SignIn, SignUp } from "@/pages";
 import {
   HomeIcon,
   UserCircleIcon,
-  ArrowRightOnRectangleIcon,
+  ArrowRightStartOnRectangleIcon,
   UserPlusIcon,
   LinkIcon,
 } from "@heroicons/react/24/solid";
@@ -21,7 +21,7 @@ export const routes = [
     element: <Profile />,
   },
   {
-    icon: ArrowRightOnRectangleIcon,
+    icon: ArrowRightStartOnRectangleIcon,
     name: "Login",
     path: "/sign-in",
     element: <SignIn />,
